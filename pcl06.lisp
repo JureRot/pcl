@@ -4,7 +4,7 @@
 ; all variables are references to objects
 
 ; BASICS
-; variables in lisp are loosely/dynamically typed (when ti comes to declaring and detecting errors)
+; variables in lisp are loosely/dynamically typed (when it comes to declaring and detecting errors)
 ; but common lisp behaves as strictly/strongly typed language in a sence that all type errors will be detected
 ; there is no way to treat an object as an instance of a class that it is not
 
@@ -12,7 +12,7 @@
 ; thus assigning new value to variable changes what object the variable refers to but has not effect on the previously referenced object
 ; but if the variable holds the reference to a mutable object, you can use that reference to modify the object itself
 
-; defining a function with DEFUN defines variables to hold the argumetns that are passed to it when its called
+; defining a function with DEFUN defines variables to hold the arguments that are passed to it when its called
 ; these variables are called bindings (which are just a runtime manifestation of a variable)
 (defun foo (x y z)
   (+ x y z))
@@ -28,7 +28,7 @@
 ; initalizes x=10, y=20, z=NIL
 ; when let is evaluated, inital values are evaluated first, than the bindings are created and set to the value, than the body is executed
 ; again, these are bindings, only referenced within the let body (not global scope)
-; they can be referenced whithin the form that introduced the varaible (binding form)
+; they can be referenced whithin the form that introduced the variable (binding form)
 
 (defun foo (x)
   (format t "Parameter: ~a~%" x)       ; |<------ x is argument
@@ -68,7 +68,7 @@
 
 (let ((count 0))
   #'(lambda () (setf count (1+ count))))
-; ther reference to count within lambda form is lexiacally legal
+; the reference to count within lambda form is lexically legal
 ; but this annonymous function will be returned as the value of the let form and could be invoked (via funcall) from outside the scope of the let
 ; AS IT HEPPENS:
 ; the binding will stick around for as long as it is needed
@@ -108,7 +108,7 @@
 (defvar *count* 0 "Count of widgets made so far.")
 (defparameter *gap-tolerance* 0.001 "Tolerance to be allowed in widget gaps.")
 ; defvar will assign new value only if the variable is undefined.
-; also defvar can be passed without initial value and will create unbound variable (withou value)
+; also defvar can be passed without initial value and will create unbound variable (without value)
 
 (defun increment-widget-count ()
   (incf *count*))
@@ -168,9 +168,9 @@
 
 ; lisp defines all variables created with defvar and defparameter as globally special
 ; so when it's called within let or as function parameter or any construct that creates new variable bindings, those bindings will be dynamic
-; that's why naming global variables with * is important (so you know confuse lexical variables with dynamic)
+; that's why naming global variables with * is important (so you dont confuse lexical variables with dynamic)
 
-; it is possible to decalre name locally special (and the binding created for that variable will be dynamic and not lexical)
+; it is possible to declare name locally special (and the binding created for that variable will be dynamic and not lexical)
 ; other code can locally declare name special to refer to the dynamic binding
 ; (but this isnt commonly done)
 
@@ -189,10 +189,10 @@
 
 
 ; ASSIGNMENT
-; to get the value of the binding just refer to the varaible (because symbol evalueates to the value of the varaible it names)
+; to get the value of the binding just refer to the variable (because symbol evaluates to the value of the variable it names)
 ; to assign new value to the binding use SETF macro
 (setf place value)
-; setf is a macro and first examins place form
+; setf is a macro and first examines place form
 ; when place is a variable, it expands into a call of SETQ special operator
 (setf x 10)
 
